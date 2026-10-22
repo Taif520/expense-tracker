@@ -24,3 +24,4 @@ This project was completed as part of a JavaScript workshop.
 HTML, CSS, JavaScript, localStorage
 
 ## How to run
+https://taif520.github.io/expense-tracker/
