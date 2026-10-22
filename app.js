@@ -16,6 +16,8 @@ if (savedData) {
 let searchText = "";
 
 
+/* ---------- 2) الوصول إلى عناصر الصفحة ---------- */
+
 const list = document.getElementById("transactions-list");
 const emptyState = document.getElementById("empty-state");
 const countBadge = document.getElementById("tx-count-badge");
@@ -38,21 +40,25 @@ const searchInput = document.getElementById("search-input");
 
 
 
+
+
 function saveData() {
   localStorage.setItem("transactions", JSON.stringify(transactions));
 }
+
 
 function formatMoney(number) {
   return "ر.ع " + number.toFixed(3);
 }
 
 
-
+/* ---------- 4) حساب الدخل والمصاريف والرصيد ---------- */
 
 function updateTotals() {
   let income = 0;
   let expense = 0;
 
+  // نمر على كل معاملة ونجمع حسب نوعها
   for (const tx of transactions) {
     if (tx.type === "income") {
       income = income + tx.amount;
@@ -69,6 +75,7 @@ function updateTotals() {
 }
 
 
+/* ---------- 5) عرض المعاملات في الصفحة ---------- */
 
 function render() {
  
@@ -80,7 +87,7 @@ function render() {
   list.innerHTML = "";
 
   for (const tx of visibleTransactions) {
-
+  
     let sign = "-";
     let icon = "fa-arrow-down";
     if (tx.type === "income") {
@@ -124,13 +131,13 @@ function render() {
     emptyState.style.display = "none";
   }
 
- 
+
   updateTotals();
 }
 
 
 function setType(type) {
-  typeInput.value = type;
+  typeInput.value = type; 
 
 
   expenseButton.className = "type-toggle-btn";
@@ -159,16 +166,17 @@ form.addEventListener("submit", function (event) {
   event.preventDefault(); 
 
   const title = titleInput.value.trim(); 
-  const amount = Number(amountInput.value); 
+  const amount = Number(amountInput.value);
 
+ 
   if (title === "" || amount <= 0) {
     alert("من فضلك اكتب عنواناً ومبلغاً صحيحاً");
     return;
   }
 
-
+ 
   const newTransaction = {
-    id: Date.now(),
+    id: Date.now(), 
     title: title,
     amount: amount,
     type: typeInput.value,
@@ -176,9 +184,10 @@ form.addEventListener("submit", function (event) {
     date: dateInput.value,
   };
 
-  transactions.unshift(newTransaction); 
+  transactions.unshift(newTransaction);
   saveData(); 
-  render(); 
+  render();
+
 
   form.reset();
   setType("expense");
@@ -187,14 +196,13 @@ form.addEventListener("submit", function (event) {
 
 
 
-
 function deleteTransaction(id) {
   const sure = confirm("هل أنت متأكد من حذف هذه المعاملة؟");
   if (sure === false) {
-    return; // 
+    return;
   }
 
-  
+
   transactions = transactions.filter(function (tx) {
     return tx.id !== id;
   });
@@ -213,5 +221,6 @@ searchInput.addEventListener("input", function () {
 
 
 
-dateInput.value = getRelativeDate(0);
+
+dateInput.value = getRelativeDate(0); 
 render();
