@@ -1,4 +1,4 @@
-ذذ
+
 const savedData = localStorage.getItem("transactions");
 
 
