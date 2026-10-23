@@ -7,7 +7,7 @@ A simple expense and income tracker built with HTML, CSS and JavaScript.
 This project was completed as part of a JavaScript workshop.
 
 - The page structure (`index.html`), the design (`style.css`) and the initial data (`data.js`) were provided in the workshop.
-- The JavaScript logic (`app.js`) was written with AI assistance. I studied it, tested it, and am using this project to practice JavaScript fundamentals.
+- The JavaScript logic (`app.js`) , I studied it, tested it, and am using this project to practice JavaScript fundamentals.
 
 ## Features
 
